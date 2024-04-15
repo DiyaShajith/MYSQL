@@ -1,0 +1,23 @@
+create database db2;
+use db2;
+create table department(deptid int primary key,dname varchar(20) not null);
+create table employee(empid int primary key,ename varchar(20) not null,salary int not null,deptid int ,DOB date,foreign key(deptid)references department(deptid));
+insert into department values(101,'computerscience');
+insert into department values(102,'maths');
+insert into department values(103,'zoology');
+insert into department values(104,'psycology');
+insert into department values(105,'computerscience');
+insert into department values(106,'english');
+select*from department;
+insert into employee values(1,'Dileep',35000,101,'1999-03-20');
+insert into employee values(2,'mukesh',9000,102,'1996-01-15');
+insert into employee values(3,'madhav',70000,103,'1998-07-10');
+insert into employee values(4,'kavya',450000,104,'1995-10-15');
+insert into employee values(5,'manju',65000,105,'1994-06-12');
+select*from employee;
+select*from employee where salary between 6000 and 10000;
+alter table employee rename column ename to empname;
+select empid,salary from employee order by salary desc;
+select dname from department where department.deptid not in(select deptid from employee);
+select department.dname,employee.empname,employee.salary from employee inner join department on employee.deptid=department.deptid where salary>5000;
+
